@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 // id: "g001",
 //     name: "Mini Bluetooth Speaker",
 //     category: "Audio",
@@ -18,7 +19,7 @@ const ImagesContainer = ({ data }) => {
     const [selectedIndx, setselectedIndx] = useState(0)
 
     return (
-        <div className="relative  ">
+        <Link href={`/products/${data.id}`} className="relative  ">
             <div
                 style={{
                     width: `${data.image?.length * 100}%`,
@@ -30,7 +31,7 @@ const ImagesContainer = ({ data }) => {
                     data.image?.map(im =>
 
                         <div className="w-full flex justify-center items-center  px-4 pt-4" key={im}>
-                            <img src={im} className="w-full rounded-lg max-h-[300] object-cover" alt="" />
+                            <img src={im} className="w-full max-w-[250] rounded-lg max-h-[250] object-cover" alt="" />
                         </div>
                     )
                 }
@@ -58,13 +59,13 @@ const ImagesContainer = ({ data }) => {
                 <i className="bi  bi-bag-plus"></i>
                 <p className="w-0 font-medium tracking-tight overflow-hidden text-nowrap h-[22] text-sm duration-300 group-hover/button:w-[75] text-left   ">Add to cart</p>
             </button>
-        </div>
+        </Link>
     )
 };
 
 const ProdCard = ({ data = {}, className = "min-w-[300]" }) => {
     return (
-        <div className={`${className} bg-background flex flex-col justify-between mb-4 duration-200 border border-transparent hover:border-foreground/20 relative group overflow-hidden w-full  shadow-xs duration-200 rounded-xl`}>
+        <div className={`${className} bg-background flex flex-col justify-between mb-4  border border-transparent hover:border-foreground/20 relative group overflow-hidden w-full  shadow-xs duration-200 rounded-xl`}>
             <ImagesContainer data={data} />
             <div className="p-2 px-4 mt-2">
                 <h1 className="font-semibold tracking-tight">{data.name}</h1>
@@ -73,10 +74,12 @@ const ProdCard = ({ data = {}, className = "min-w-[300]" }) => {
                     <p className="p-1 px-4 font-medium tracking-tighter bg-secondary rounded-md border border-foreground/15">
                         {data.price} <span className="text-sm  ml-1">MAD</span>
                     </p>
-                    <Button className={" bg-foreground mr-2"}>
-                        Buy now
-                        <i class="bi bi-arrow-up-right-circle-fill"></i>
-                    </Button>
+                    <Link href={`/products/${data.id}`} >
+                        <Button className={" bg-foreground mr-2 px-6"}>
+                            Buy now
+                            <i class="bi bi-arrow-up-right-circle-fill"></i>
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </div>

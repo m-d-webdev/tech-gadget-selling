@@ -189,22 +189,19 @@
   animation: gradientMove 8s linear infinite;
 }
 
-.gradBG {
-  background: linear-gradient(90deg,
-      #076eff,
+.IntorAssistant {
+  background: linear-gradient(40deg,
+      var(--foreground),
       /* honey yellow */
-      var(--chart-5),
+      #b100e7,
+      var(--color-chart-1)
       /* darker honey */
-      #bd15ff,
-      /* AI purple */
-      var(--chart-1)
-      /* AI blue */
     );
-
-  background-size: 200% 100%;
-  animation: gradientMove 2s linear infinite;
-
+  /* background-size: 100% 100%; */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 
 @keyframes gradientMove {
   0% {

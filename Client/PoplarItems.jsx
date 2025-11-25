@@ -20,7 +20,7 @@ const Container1 = () => {
     ];
     const [Indx, setIndx] = useState(0);
     return (
-        <div className="h-[100%] max-h-[100%] relative overflow-hidden group w-4/12 bg-background relative rounded-xl  shadow-sm relative ">
+        <div className="h-[100%] max-h-[100%]  overflow-hidden group w-4/12 bg-background  rounded-xl  shadow-sm relative ">
             <div
                 style={{
                     transform: `translateX(-${33.333 * Indx}%)`

@@ -19,7 +19,7 @@ const Slider = ({ children, gap = 8, moveVal = 300, countElems = 1, className = 
                 style={{
                     transform: `translateX(-${transformValue}px)`
                 }}
-                className={`flex gap-2 ease-out  duration-500  ${sliderClassNamemm}`}
+                className={`flex gap-2 ease-in-out  duration-800  ${sliderClassNamemm}`}
             >
 
                 {children}

@@ -79,11 +79,11 @@ const SearchAndPopularSection = () => {
                     className="border-none outline-none tracking-tight w-full md:w-full" />
                 <Button className={'bg-foreground gap-y py-6 rounded-lg font-mono'} variant={""}>
                     Search for Gadgets
-                    <i className="bi text-xl bi-robot"></i>
+
                 </Button>
             </div>
             <div className="w-full max-w-[1100]  mt-10">
-                <div className="flex ml-6 items-center gap-4 opacity-70">
+                <div className="flex ml-1 items-center gap-4 opacity-70">
                     <i className="bi bi-graph-up-arrow"></i>
                     <p className="text-sm ">This Week’s Trending Products </p>
                 </div>
