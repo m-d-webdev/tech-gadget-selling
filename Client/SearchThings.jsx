@@ -26,7 +26,7 @@ const SearchThings = () => {
     return (
         <Dialog
             withCloseButton={false}
-            containerClassName="p-1 md:w-[500]"
+            containerClassName="p-1 md:w-[650]"
             backWhenClose={true}
         >
             <div className="w-full p-2 tracking-tight   rounded flex items-center gap-4">

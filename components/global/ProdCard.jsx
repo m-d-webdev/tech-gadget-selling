@@ -19,7 +19,7 @@ const ImagesContainer = ({ data }) => {
     const [selectedIndx, setselectedIndx] = useState(0)
 
     return (
-        <Link href={`/products/${data.id}`} className="relative  ">
+        <div href={`/products/${data.id}`} className="relative  ">
             <div
                 style={{
                     width: `${data.image?.length * 100}%`,
@@ -30,7 +30,7 @@ const ImagesContainer = ({ data }) => {
                 {
                     data.image?.map(im =>
 
-                        <div className="w-full flex justify-center items-center  px-4 pt-4" key={im}>
+                        <div className="w-full flex justify-center items-center  " key={im}>
                             <img src={im} className="w-full max-w-[250] rounded-lg max-h-[250] object-cover" alt="" />
                         </div>
                     )
@@ -39,10 +39,10 @@ const ImagesContainer = ({ data }) => {
 
             <div className="w-full absolute px-3 flex justify-between top-[45%] left-0 group-hover:opacity-100 opacity-70">
                 <button onClick={() => setselectedIndx(pv => pv > 0 ? pv - 1 : 0)} className="p-1 opacity-70 hover:opacity-100 rounded-full bg-sidebar px-[7] border border-foreground/20">
-                    <i class="bi bi-arrow-left-short"></i>
+                    <i className="bi bi-arrow-left-short"></i>
                 </button>
                 <button onClick={() => setselectedIndx(pv => pv < data.image?.length - 1 ? pv + 1 : data.image?.length - 1)} className="p-1 opacity-70 hover:opacity-100 rounded-full bg-sidebar px-[7] border border-foreground/20">
-                    <i class="bi bi-arrow-right-short"></i>
+                    <i className="bi bi-arrow-right-short"></i>
                 </button>
             </div>
             <div className="w-full absolute gap-1 px-3 flex justify-center items-center bottom-2 left-0">
@@ -54,12 +54,20 @@ const ImagesContainer = ({ data }) => {
                     )
                 }
             </div>
-            <button className="absolute group/button  flex items-center gap-2 tracking-tight  hover:opacity-100 p-1 px-2 hover:bg-foreground/90 duration-200 cursor-pointer hover:text-white hover:border-foreground/10 border border-transparent rounded-full opacity-50 top-1 right-1">
+            <div className="absolute  top-1 right-1 flex gap-1  items-center">
 
-                <i className="bi  bi-bag-plus"></i>
-                <p className="w-0 font-medium tracking-tight overflow-hidden text-nowrap h-[22] text-sm duration-300 group-hover/button:w-[75] text-left   ">Add to cart</p>
-            </button>
-        </Link>
+                <button className=" group/button bg-background/20  flex items-center justify-center border border-background/40 tracking-tight  hover:opacity-100 p-1 px-2 hover:bg-chart-1 duration-200 cursor-pointer hover:text-white  rounded-full opacity-30">
+
+                    <i className="bi  bi-leaf"></i>
+                    <p className="w-0 font-medium tracking-tight overflow-hidden text-nowrap h-[22] text-sm duration-300 group-hover/button:w-[45] group-hover/button:ml-1 text-left   ">Ask AI</p>
+                </button>
+                <button className=" group/button bg-background/20  flex items-center justify-center border border-background/40 tracking-tight  hover:opacity-100 p-1 px-2 hover:bg-chart-1 duration-200 cursor-pointer hover:text-white  rounded-full opacity-30">
+
+                    <i className="bi bi-cart2"></i>
+                    <p className="w-0 font-medium tracking-tight overflow-hidden text-nowrap h-[22] text-sm duration-300 group-hover/button:w-[75] group-hover/button:ml-1 text-left   ">Add to cart</p>
+                </button>
+            </div>
+        </div>
     )
 };
 
@@ -77,7 +85,7 @@ const ProdCard = ({ data = {}, className = "min-w-[300]" }) => {
                     <Link href={`/products/${data.id}`} >
                         <Button className={" bg-foreground mr-2 px-6"}>
                             Buy now
-                            <i class="bi bi-arrow-up-right-circle-fill"></i>
+                            <i className="bi bi-arrow-up-right-circle-fill"></i>
                         </Button>
                     </Link>
                 </div>

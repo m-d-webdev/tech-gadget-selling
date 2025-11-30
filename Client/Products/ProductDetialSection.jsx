@@ -88,13 +88,13 @@ const ImagesContainer = ({ setShowZoom, images = [], setZoomPosition, setZoomedi
           <button
             onClick={() => setIndx(pv => pv > 0 ? pv - 1 : 0)}
             className="p-1 opacity-70 hover:opacity-100 rounded-md bg-foreground text-background px-[7] border border-foreground/20">
-            <i class="bi text-xl bi-arrow-left-short"></i>
+            <i className="bi text-xl bi-arrow-left-short"></i>
           </button>
 
           <button
             onClick={() => setIndx(pv => pv < images.length - 1 ? pv + 1 : images.length - 1)}
             className="p-1 opacity-70 hover:opacity-100 rounded-md bg-foreground text-background px-[7] border border-foreground/20">
-            <i class="bi text-xl bi-arrow-right-short"></i>
+            <i className="bi text-xl bi-arrow-right-short"></i>
           </button>
         </div>
         <div className="w-full absolute gap-1 px-3 flex justify-center items-center bottom-2 left-0">
@@ -245,7 +245,7 @@ const ProductDetialSection = ({ data }) => {
               className="flex ml-4 gap-2 p-2 px-7 bg-background rounded-sm  border border-foreground/10 font-medium"
             >
               Copy link
-              <i class="bi bi-copy"></i>
+              <i className="bi bi-copy"></i>
             </button>
           </div>
           <a target="_blank" href={`https://wa.me/212767310612?text=${encodeURIComponent(whatAppmessage)}`}

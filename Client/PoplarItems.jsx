@@ -41,10 +41,10 @@ const Container1 = () => {
 
             <div className="w-full absolute px-3 flex justify-between top-[45%] left-0 group-hover:opacity-100 opacity-20">
                 <button onClick={() => setIndx(pv => pv > 0 ? pv - 1 : 0)} className="p-1 opacity-70 hover:opacity-100 rounded-full bg-sidebar px-[7] border border-foreground/20">
-                    <i class="bi bi-arrow-left-short"></i>
+                    <i className="bi bi-arrow-left-short"></i>
                 </button>
                 <button onClick={() => setIndx(pv => pv < 2 ? pv + 1 : 2)} className="p-1 opacity-70 hover:opacity-100 rounded-full bg-sidebar px-[7] border border-foreground/20">
-                    <i class="bi bi-arrow-right-short"></i>
+                    <i className="bi bi-arrow-right-short"></i>
                 </button>
             </div>
             <div className="w-full absolute gap-1 px-3 flex justify-center items-center bottom-2 left-0">

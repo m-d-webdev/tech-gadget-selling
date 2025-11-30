@@ -25,11 +25,11 @@ const categories = [
     },
     {
         name: "Cameras & Video",
-        icon: <div className="p-4  text-chart-1 border border-foreground/20 rounded-full"> <i class="bi bi-camera2 text-3xl"></i></div>
+        icon: <div className="p-4  text-chart-1 border border-foreground/20 rounded-full"> <i className="bi bi-camera2 text-3xl"></i></div>
     },
     {
         name: "Computer & Office",
-        icon: <div className="p-4  text-chart-1 border border-foreground/20 rounded-full"> <i class="bi  bi-pc-display-horizontal text-3xl"></i></div>
+        icon: <div className="p-4  text-chart-1 border border-foreground/20 rounded-full"> <i className="bi  bi-pc-display-horizontal text-3xl"></i></div>
     },
     {
         name: "Gaming Accessories",
@@ -37,7 +37,7 @@ const categories = [
     },
     {
         name: "Car Gadgets",
-        icon: <div className="p-4  text-chart-1 border border-foreground/20 rounded-full"> <i class="bi bi-car-front-fill text-3xl"></i></div>
+        icon: <div className="p-4  text-chart-1 border border-foreground/20 rounded-full"> <i className="bi bi-car-front-fill text-3xl"></i></div>
     },
     {
         name: "Home & Personal Care",
@@ -49,7 +49,7 @@ const categories = [
     },
     {
         name: "Lighting & LED",
-        icon: <div className="p-4  text-chart-1 border border-foreground/20 rounded-full"> <i class="bi bi-lamp text-3xl"></i></div>
+        icon: <div className="p-4  text-chart-1 border border-foreground/20 rounded-full"> <i className="bi bi-lamp text-3xl"></i></div>
     },
     {
         name: "Tools & DIY",
