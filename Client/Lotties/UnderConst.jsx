@@ -1,12 +1,9 @@
 "use client";
-
 import Lottie from "react-lottie";
-import Animation from "./animations/success.json"
-import { motion } from "framer-motion"
-import { useMainContext } from "@/context/MainContext";
-const Success = ({ width = 100, height = 100 }) => {
+import Animation from "./animations/Under Maintenance.json";
 
-    const { ManOnScoterDuration } = useMainContext()
+const UnderConstruction = ({ width = 100, height = 100 }) => {
+
     return (
 
         <Lottie
@@ -14,7 +11,7 @@ const Success = ({ width = 100, height = 100 }) => {
             options={{
                 animationData: Animation,
                 autoplay: true,
-                loop: false,
+                loop: true,
                 rendererSettings: {
                     preserveAspectRatio: 'xMidYMid slice',
                 },
@@ -28,4 +25,4 @@ const Success = ({ width = 100, height = 100 }) => {
     )
 }
 
-export default Success
+export default UnderConstruction

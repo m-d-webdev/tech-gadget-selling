@@ -19,7 +19,7 @@ const ImagesContainer = ({ data }) => {
     const [selectedIndx, setselectedIndx] = useState(0)
 
     return (
-        <div href={`/products/${data.id}`} className="relative  ">
+        <div  className="relative  ">
             <div
                 style={{
                     width: `${data.image?.length * 100}%`,
@@ -30,9 +30,9 @@ const ImagesContainer = ({ data }) => {
                 {
                     data.image?.map(im =>
 
-                        <div className="w-full flex justify-center items-center  " key={im}>
+                        <Link href={`/products/${data.id}`} className="w-full flex justify-center items-center  " key={im}>
                             <img src={im} className="w-full max-w-[250] rounded-lg max-h-[250] object-cover" alt="" />
-                        </div>
+                        </Link>
                     )
                 }
             </div>
@@ -76,7 +76,7 @@ const ProdCard = ({ data = {}, className = "min-w-[300]" }) => {
         <div className={`${className} bg-background flex flex-col justify-between mb-4  border border-transparent hover:border-foreground/20 relative group overflow-hidden w-full  shadow-xs duration-200 rounded-xl`}>
             <ImagesContainer data={data} />
             <div className="p-2 px-4 mt-2">
-                <h1 className="font-semibold tracking-tight">{data.name}</h1>
+                 <Link href={`/products/${data.id}`} className="font-semibold tracking-tight">{data.name}</Link>
                 <p className="text-sm mt-1 opacity-70">{data.description}</p>
                 <div className="w-full flex justify-between items-center mt-6 ">
                     <p className="p-1 px-4 font-medium tracking-tighter bg-secondary rounded-md border border-foreground/15">

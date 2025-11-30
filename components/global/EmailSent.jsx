@@ -1,5 +1,5 @@
 "use client"
-import Success from "@/Client/Lotties/ManOnScotter copy"
+import Success from "@/Client/Lotties/UnderConst"
 import { motion } from "framer-motion"
 import { Button } from "../ui/button"
 const EmailSent = ({ onClose }) => {

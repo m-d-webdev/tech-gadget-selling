@@ -6,6 +6,7 @@ const Bbricolage_Grotesque = Bricolage_Grotesque({
 });
 import MainContext from "@/context/MainContext";
 import Header from "@/Client/layout/header";
+import Footer from "@/Client/layout/Footer";
 
 export default function RootLayout({ children, modal }) {
 
@@ -16,6 +17,7 @@ export default function RootLayout({ children, modal }) {
           <Header />
           {children}
           {modal}
+          <Footer />
         </MainContext>
       </body>
     </html>
