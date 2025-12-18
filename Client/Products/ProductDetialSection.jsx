@@ -1,36 +1,9 @@
 "use client";
 
+import { Get_prod } from "@/api/Products";
 import { Minus, Plus, Star } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const product = {
-  id: "red-gaming-chair-001",
-  title: "Red Gaming Chair from china is good and new",
-  price: 90.00,
-  oldPrice: 100.00,
-  rating: 4.9,
-  reviewsCount: 215,
-  inStock: true,
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  colors: ["#000000", "#6B7280", "#EF4444", "#10B981", "#3B82F6"],
-
-  images: [
-    "/media/showenImage.png",
-    "https://i.pinimg.com/736x/87/8c/ee/878ceee47d8794274ed6ba8f44a34c6b.jpg",
-    "https://i.pinimg.com/736x/3e/fb/ed/3efbed8d9160c71bbdb8b9ae6e3c8af6.jpg",
-  ],
-  sku: "FNB476E6-A0BC",
-  tags: ["Furniture", "Office", "Gaming Chair", "Chair"],
-
-  additionalInformation: {
-    "Seat Material": "Leather",
-    "Color": "Black, Brown, Grey, Green, Blue",
-    "Item Weight": "25 Kilograms",
-    "Dimensions": '27" × 31" × 46"',
-    "Brand": "KTI Design"
-  }
-};
 
 
 
@@ -56,7 +29,7 @@ const ImagesContainer = ({ setShowZoom, images = [], setZoomPosition, setZoomedi
           images.map((m, i) => <img onClick={() => setIndx(i)} key={m} src={m} className={`md:w-full border ${Indx == i ? "border-chart-1/20 opacity-100" : "opacity-70 border-foreground/20"}  rounded-md object-top md:h-[100] h-[100] object-cover`} />)
         }
       </div>
-      <div className="md:h-[500] h-[400]  border border-foreground/15 rounded-xl  md:max-w-[450] max-w-[400] relative overflow-hidden group w-full  ">
+      <div className="md:h-[400]   border border-foreground/15 rounded-xl  md:max-w-[450] max-w-[400] relative overflow-hidden group w-full  ">
         <div
           style={{
             width: `${images?.length * 100}%`,
@@ -78,7 +51,7 @@ const ImagesContainer = ({ setShowZoom, images = [], setZoomPosition, setZoomedi
                   setShowZoom(false)
                 }}
                 className="  w-full   cursor-zoom-in flex flex-col items-center gap-3 justify-center" key={i}>
-                <img src={i} alt="" className="max-w-full  max-h-[500] object-cover " />
+                <img src={i} alt="" className="max-w-full  max-h-[300] object-cover " />
               </div>
             )
           }
@@ -133,32 +106,48 @@ function ImageZoomComponent({ imageUrl, zoomPosition }) {
   );
 }
 
-const ProductDetialSection = ({ data }) => {
+const ProductDetialSection = ({ productd_id }) => {
   const [showZoom, setShowZoom] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [product, setProduct] = useState(null);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
   const [countSelected, setcountSelected] = useState(1);
-  const [ZoomedimageUrl, setZoomedimageUrl] = useState(data.images[0]);
+  const [ZoomedimageUrl, setZoomedimageUrl] = useState();
   const link = "https://www.instagram.com/reels/DO6juujDL7V/"
-  const whatAppmessage = `HHello, I’m interested in ordering this product. Product ID: ${product.id}. Could you provide more details?`
+  const whatAppmessage = `HHello, I’m interested in ordering this product?. Product ID: ${product?.id}. Could you provide more details?`
+
+
+  const GetProd = async () => {
+    setLoading(true)
+    const res = await Get_prod({ _id: productd_id });
+    setProduct(res.data);
+    setZoomedimageUrl(res.data?.images[0])
+    setLoading(false)
+  };
+  useEffect(() => {
+    GetProd()
+  }, [])
+
   return (
-    <div className="w-full px-2 text-sm max-w-[1400] flex flex-col md:flex-row items-center gap-3 ">
-      <ImagesContainer setShowZoom={setShowZoom} images={product.images} setZoomPosition={setZoomPosition} setZoomedimageUrl={setZoomedimageUrl} />
-      <div className="gap-4 mt-5 md:mt-0 md:min-h-[500] flex flex-col  items-start  relative w-full md:w-6/12">
+    <div className="w-full  px-2 text-sm items-start  flex flex-col md:flex-row  gap-3 ">
+      <ImagesContainer setShowZoom={setShowZoom} images={product?.images} setZoomPosition={setZoomPosition} setZoomedimageUrl={setZoomedimageUrl} />
+      <div className="gap-4 mt-5 md:mt-0 md:min-h-[500] flex flex-col  items-start  relative ">
+
         {
           showZoom &&
           <ImageZoomComponent zoomPosition={zoomPosition} imageUrl={ZoomedimageUrl} />
         }
 
-        <h1 className="text-2xl max-w-[400] font-semibold tracking-tight">{product.title}</h1>
+        <h1 className="text-2xl max-w-[600] font-semibold tracking-tight">{product?.name}</h1>
         <div className="flex gap-2 items-center">
-          <h1 className="flex gap-1 font-semibold"><Star className="fill-yellow-300 w-5 h-5 stroke-yellow-300" /> {product.rating}</h1>
-          <p className="opacity-70">( {product.reviewsCount} Reviews )</p>
+          <h1 className="flex gap-1 font-semibold"><Star className="fill-yellow-300 w-5 h-5 stroke-yellow-300" /> {product?.rating}</h1>
+          <p className="opacity-70">( {product?.reviewsCount} Reviews )</p>
         </div>
         <div className="flex gap-4 mt-2 items-center">
-          <h1 className="text-xl max-w-[400] font-semibold tracking-tighter">{product.price}.00  MAD</h1>
-          <h1 className="text-base line-through text-destructive max-w-[400] font-medium tracking-tight">{product.oldPrice}.00 MAD</h1>
+          <h1 className="text-xl max-w-[400] font-semibold tracking-tighter">{product?.price}.00  MAD</h1>
+          <h1 className="text-base line-through text-destructive max-w-[400] font-medium tracking-tight">{product?.originalPrice}.00 MAD</h1>
         </div>
-        <p className="max-w-[500] mt-3 opacity-80">{product.description}</p>
+        <p className="max-w-[500] mt-3 opacity-80">{product?.description}</p>
 
         {/* -------------------- */}
         {/* <div className="flex  p-1 px-2 rounded-full text-sm font-medium tracking-tight items-center gap-1  border-2 border-[#00ed6f] bg-[#00ed6f25] text-[#009445]">
@@ -169,7 +158,7 @@ const ProductDetialSection = ({ data }) => {
 
 
         {
-          product.inStock
+          product?.stock > 0
             ? <div className="flex  p-1 px-2 rounded-full text-sm font-medium tracking-tight items-center gap-2  border-2 border-yellow-400 bg-yellow-400/10 text-yellow-700">
               <i className="bi bi-graph-down-arrow"></i>
               Low stock !
@@ -192,7 +181,7 @@ const ProductDetialSection = ({ data }) => {
           <div className="flex gap-2 mt-2">
 
             {
-              product.colors?.map(c => <div key={c} style={{ borderColor: c }} className="p-[1] border-[1] flex items-center justify-center rounded-full"><div style={{ backgroundColor: c }} className="w-[30] h-[30] rounded-full " /></div>)
+              product?.colors?.map(c => <div key={c} className="p-[1] border-foreground/20 border-[1] flex items-center justify-center rounded-full"><div style={{ backgroundColor: c }} className="w-[30] h-[30] rounded-full " /></div>)
             }
           </div>
         </div>
@@ -233,7 +222,7 @@ const ProductDetialSection = ({ data }) => {
           </button>
         </div>
 
-        {/* <a target="_blank" href={`hI%20want%20to%20order%20product%20ID:%${product.id}`}> */}
+        {/* <a target="_blank" href={`hI%20want%20to%20order%20product%20ID:%${product?.id}`}> */}
         <div className="flex mt-2 items-center gap-3">
 
 

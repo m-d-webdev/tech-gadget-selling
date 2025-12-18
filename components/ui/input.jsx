@@ -5,6 +5,7 @@ function Input({
   id = "input",
   className,
   parentClassName = "",
+  grandPClassName = "",
   type,
   placeholder = " ",
   icon,
@@ -13,10 +14,12 @@ function Input({
   ...props
 }) {
   return (
-    <div>
+    <div className={grandPClassName}>
       <div className="w-full flex justify-between items-center">
-
-        <label className="text-xs ml-1  font-medium  mb-1">{label}</label>
+        {
+          label &&
+          <label className="text-xs ml-1  font-medium  mb-1">{label}</label>
+        }
         {
           info && info
         }

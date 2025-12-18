@@ -2,6 +2,7 @@
 
 import LinesUnderSection from "@/components/global/LinesUnderSection"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 
 const FirstSection = () => {
@@ -16,14 +17,16 @@ const FirstSection = () => {
                     We bring you reliable, modern tech designed to handle daily tasks effortlessly, offering great performance without the heavy cost.
                 </p>
                 <div className="mt-8 flex gap-4">
-                    <Button
-                        style={{
-                            filter: `drop-shadow(-20px 40px 100px var(--color-chart-1))`
-                        }}
-                        className={" px-8"}>
-                        Start Shoping
-                        <i className="bi bi-basket"></i>
-                    </Button>
+                    <Link href={"/products"}>
+                        <Button
+                            style={{
+                                filter: `drop-shadow(-20px 40px 100px var(--color-chart-1))`
+                            }}
+                            className={" px-8"}>
+                            Start Shoping
+                            <i className="bi bi-basket"></i>
+                        </Button>
+                    </Link>
                     <Button variant={"outline"} className={'opacity-70 hover:opacity-100'}>
                         Learn about us
                         <i className="bi bi-info-circle"></i>

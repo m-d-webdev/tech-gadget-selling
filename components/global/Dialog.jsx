@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { X } from "lucide-react";
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 const Dialog = ({
     children,
@@ -18,6 +18,7 @@ const Dialog = ({
     const Router = useRouter()
 
     const [isOpen, setOpen] = useState(true);
+    const [isOpen2, setOpen2] = useState(true);
     const PageRef = useRef();
     let time1;
 
@@ -38,14 +39,22 @@ const Dialog = ({
     }
 
     const handleClickOutside = (e) => {
-
         if (!closeIfClickOutside) return;
         if (!PageRef.current?.contains(e.target)) {
             HandelClose()
         }
-
     };
+    const [Tik, setTik] = useState(false);
 
+    const pathName = usePathname();
+    useEffect(() => {
+        if (!Tik) {
+            setTik(true);
+            return;
+        };
+        document.body.classList.remove("overflow-hidden")
+        setOpen2(false)
+    }, [pathName])
     useEffect(() => {
         document.body.classList.add("overflow-hidden")
         return () => {
@@ -54,55 +63,61 @@ const Dialog = ({
     }, [])
 
     return (
-        <div style={{
-            zIndex: "990",
-        }}
-            onClick={handleClickOutside} className='fixed overflow-auto inset-0 p-4  bg-foreground/20 top-0 left-0 w-screen h-screen flex items-center justify-center'>
+        <>
+            {
 
-            <AnimatePresence>
-                {
-                    isOpen &&
-                    <motion.div
-                        ref={PageRef}
+                isOpen2 &&
+                <div style={{
+                    zIndex: "990",
+                }}
+                    onClick={handleClickOutside} className='fixed overflow-auto inset-0 p-4  bg-foreground/20 top-0 left-0 w-screen h-screen flex items-center justify-center'>
 
-                        initial={{
-                            scale: .95,
-                            opacity: 0
-                        }}
-                        exit={{
-                            scale: .98,
-                            opacity: 0,
-                            transition: {
-                                // ease: "easeInOut",
-                                duration: .2,
-                                type: "keyframes"
-                            }
-                        }}
-                        animate={{
-                            scale: 1,
-                            opacity: 1,
-                            transition: {
-                                // ease: "easeInOut",
-                                duration: .2,
-                                type: "keyframes"
-                            }
-                        }}
-
-                        className={`${containerClassName}  relative  bg-background p-3 rounded-md border border-foreground/20  max-h-full overflow-auto`}
-                    >
+                    <AnimatePresence>
                         {
-                            withCloseButton &&
-                            <button
-                                onClick={HandelClose}
-                                className={closeButtonClassName}><X className="w-4 h-4" /></button>
+                            isOpen &&
+                            <motion.div
+                                ref={PageRef}
+
+                                initial={{
+                                    scale: .95,
+                                    opacity: 0
+                                }}
+                                exit={{
+                                    scale: .98,
+                                    opacity: 0,
+                                    transition: {
+                                        // ease: "easeInOut",
+                                        duration: .2,
+                                        type: "keyframes"
+                                    }
+                                }}
+                                animate={{
+                                    scale: 1,
+                                    opacity: 1,
+                                    transition: {
+                                        // ease: "easeInOut",
+                                        duration: .2,
+                                        type: "keyframes"
+                                    }
+                                }}
+
+                                className={`${containerClassName}  relative  bg-background p-3 rounded-md border border-foreground/20  max-h-full overflow-auto`}
+                            >
+                                {
+                                    withCloseButton &&
+                                    <button
+                                        onClick={HandelClose}
+                                        className={closeButtonClassName}><X className="w-4 h-4" /></button>
+                                }
+                                {children}
+
+
+                            </motion.div>
                         }
-                        {children}
-
-
-                    </motion.div>
-                }
-            </AnimatePresence>
-        </div>
+                    </AnimatePresence>
+                </div>
+            }
+        </>
     )
 }
 
