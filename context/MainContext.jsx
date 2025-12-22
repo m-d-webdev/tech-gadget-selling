@@ -1,11 +1,13 @@
 "use client"
 import { AuthMe, RefreshToken } from "@/api/auth";
+import axiosInstance from "@/api/axios";
+import { GET_CART_ITEMS } from "@/api/Cart";
 import { useContext, createContext, useState, useEffect } from "react"
 const MainContextE = createContext();
 
 const MainContext = ({ children }) => {
     const [theme, settheme] = useState(null)
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(null);
     // ############# --------- ############
 
     const Refresh_token = async () => {
@@ -36,6 +38,21 @@ const MainContext = ({ children }) => {
             settheme(LocalTheme)
         }
     }, []);
+
+    useEffect(() => {
+        if (!user) return;
+
+        const Get_CartItemsIds = async () => {
+            const res = await GET_CART_ITEMS()
+            let ids = res?.data?.items?.map(i => i.product?._id);
+            if (typeof (localStorage) != "" && ids) {
+                localStorage.setItem("cart_ids", JSON.stringify(ids))
+            }
+        };
+
+        Get_CartItemsIds()
+
+    }, [user])
 
 
     useEffect(() => {

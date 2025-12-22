@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import ReadMore from "./ReadMore";
+import AddToCartButton from "./AddToCartButton";
 
 const ImagesContainer = ({ data }) => {
     const [selectedIndx, setselectedIndx] = useState(0)
@@ -51,11 +52,9 @@ const ImagesContainer = ({ data }) => {
                     <i className="bi  bi-leaf"></i>
                     <p className="w-0 font-medium tracking-tight overflow-hidden text-nowrap h-[22] text-sm duration-300 group-hover/button:w-[45] group-hover/button:ml-1 text-left   ">Ask AI</p>
                 </button>
-                <button className=" group/button bg-background/20  flex items-center justify-center border border-background/40 tracking-tight  hover:opacity-100 p-1 px-2 hover:bg-chart-1 duration-200 cursor-pointer hover:text-white  rounded-full opacity-30">
 
-                    <i className="bi bi-cart2"></i>
-                    <p className="w-0 font-medium tracking-tight overflow-hidden text-nowrap h-[22] text-sm duration-300 group-hover/button:w-[75] group-hover/button:ml-1 text-left   ">Add to cart</p>
-                </button>
+                <AddToCartButton productId={data._id} colors={data.colors} />
+
             </div>
         </div>
     )
