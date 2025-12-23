@@ -2,6 +2,7 @@
 
 import { useMainContext } from "@/context/MainContext"
 import Link from "next/link"
+import ProfileDropDown from "../layout/ProfileDropDown";
 
 const HeaderAuthStatus = () => {
     const { user } = useMainContext();
@@ -11,9 +12,7 @@ const HeaderAuthStatus = () => {
                 user
 
                     ?
-                    <div className="p-[1] border-1 rounded-full border-chart-1">
-                        <img className="w-[35] h-[35] rounded-full object-cover" src={user.avatar} alt="" />
-                    </div>
+                    <ProfileDropDown />
                     : <>
 
                         <Link href={"/register"} className="tracking-tight opacity-80 hover:opacity-100 duration-200 p-1 bg-sidebar  border border-foreground/20  px-3 rounded-full text-sm flex gap-2  items-center">

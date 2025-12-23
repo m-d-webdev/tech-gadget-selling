@@ -40,8 +40,6 @@ export default function RegisterForm() {
         setError(false);
 
         const res = await Register({ data });
-        console.log({ _: res });
-
         if (res.failed) {
             setLoading(false);
             setError(res.message ?? "Unknown error , please try again later");
