@@ -57,14 +57,14 @@ const Item = ({ item, updateQuantity, GET_LIST, index }) => {
             </div>
             <div className="col-span-3 justify-center flex items-center gap-2">
                 <button
-                    onClick={() => updateQuantity(item.id, -1)}
+                    onClick={() => updateQuantity(item._id, -1)}
                     className="w-7 h-7 border rounded hover:bg-gray-100 flex items-center justify-center"
                 >
                     -
                 </button>
                 <span className="w-8 text-center text-sm">{item.quantity}</span>
                 <button
-                    onClick={() => updateQuantity(item.id, 1)}
+                    onClick={() => updateQuantity(item._id, 1)}
                     className="w-7 h-7 border rounded hover:bg-gray-100 flex items-center justify-center"
                 >
                     +
@@ -107,6 +107,7 @@ export default function ShoppingCart() {
         }
     }, [])
 
+    
     // ======== LOAD LIST ===================
 
     const [isOpen, setIsOpen] = useState(true);
@@ -114,7 +115,7 @@ export default function ShoppingCart() {
     const updateQuantity = (id, delta) => {
         setCartItems(items =>
             items.map(item =>
-                item.id === id
+                item._id === id
                     ? { ...item, quantity: Math.max(1, item.quantity + delta) }
                     : item
             )
