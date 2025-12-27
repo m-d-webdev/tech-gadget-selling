@@ -1,8 +1,12 @@
 "use client";
 
+import axiosInstance from "@/api/axios";
 import LinesUnderSection from "@/components/global/LinesUnderSection";
 import ReviewCard from "@/components/global/ReviewCard";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import Empty from "../Lotties/Empty";
+import Loader1 from "@/components/global/Loader1";
 
 const reviews = [
     {
@@ -136,7 +140,27 @@ const reviews = [
     }
 ]
 
-const ReviewsAboutProds = () => {
+const ReviewsAboutProds = ({ productd_id }) => {
+
+    const [Reviews, setReviews] = useState([])
+    const [isLoading, setLoading] = useState(true)
+    const [canGoNext, setCanGoNext] = useState(false)
+    const Get_OldSearchProds = async () => {
+        setLoading(true);
+        const res = await axiosInstance.get(`/product/${productd_id}/get-reviews`);
+        console.log({ res });
+
+        setReviews(res?.data?.reviews ?? []);
+        setCanGoNext(res?.data?.pagination?.hasNextPage ?? false);
+        setLoading(false);
+
+    };
+
+    useEffect(() => {
+        Get_OldSearchProds()
+    }, []);
+
+
     return (
         <div className="w-full relative max-w-[1200] p-4 mt-15 md:min-h-[100vh]">
             <LinesUnderSection
@@ -147,18 +171,36 @@ const ReviewsAboutProds = () => {
                 lineClassName="bg-foreground/5"
             />
             <h1 className="font-semibold tracking-tight text-2xl">What  people say about this product?</h1>
-            <div className="grid gap-1 mt-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-                {
-                    reviews.map(r => <ReviewCard className={"!rounded-none"} key={r.id} data={r} />)
-                }
+            {
+                isLoading
+                    ? <div className="w-full  min-h-[600] flex flex-col items-center justify-center">
+                        <Loader1 className="before:border-2 before:border-foreground w-[35] h-[35]" />
+                        <p className="mt-4">Loading...</p>
+                    </div>
+                    : <>
+                        {Reviews.length > 0
+                            ?
+                            <div className="grid gap-1 mt-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+                                {Reviews.map(r => <ReviewCard className={"!rounded-none"} key={r.id} data={r} />)}
+                            </div>
+                            : <div className="w-full  min-h-[600] flex flex-col items-center justify-center">
+                                <Empty width={120} height={120} />
+                                <h1 className=" mt-4 font-medium text-lg">This product doesn’t have any reviews yet</h1>
+                            </div>
+                        }
+                    </>
+            }
 
-            </div>
-            <div className="mt-5 flex justify-center">
-                    <Button variant={"outline"} className={"w-[250]  "}>
+
+            {
+                Reviews.length > 0 &&
+                <div className="mt-5 flex justify-center">
+                    <Button disabled={canGoNext} variant={"outline"} className={"w-[250]  "}>
                         Load more
                         <i className="bi bi-arrow-up-right-circle-fill"></i>
                     </Button>
-            </div>
+                </div>
+            }
         </div>
     )
 }

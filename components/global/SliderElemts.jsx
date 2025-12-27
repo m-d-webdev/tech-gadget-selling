@@ -19,24 +19,22 @@ const Slider = ({ children, gap = 8, moveVal = 300, countElems = 1, className = 
                 style={{
                     transform: `translateX(-${transformValue}px)`
                 }}
-                className={`flex gap-2 ease-in-out  duration-800  ${sliderClassNamemm}`}
+                className={`flex gap-2 ease-in-out justify-start duration-800  ${sliderClassNamemm}`}
             >
 
                 {children}
 
             </div>
-            <div className="w-full absolute top-[45%] flex  justify-between">
                 <button
                     onClick={() => handleMove(false)}
-                    className="p-2 opacity-80 hover:opacity-100 duration-200 cursor-pointer px-3 bg-secondary-foreground text-background rounded-full border border-foreground/10">
+                    className="p-2 absolute top-[45%] left-1 opacity-80 hover:opacity-100 duration-200 cursor-pointer px-3 bg-secondary-foreground text-background rounded-full border border-foreground/10">
                     <i className="bi bi-arrow-left "></i>
                 </button>
                 <button
                     onClick={() => handleMove(true)}
-                    className="p-2 opacity-80 hover:opacity-100 duration-200 cursor-pointer px-3 text-background  bg-secondary-foreground  rounded-full border border-foreground/10">
+                    className="p-2  absolute top-[45%] right-1 opacity-80 hover:opacity-100 duration-200 cursor-pointer px-3 text-background  bg-secondary-foreground  rounded-full border border-foreground/10">
                     <i className="bi bi-arrow-right"></i>
                 </button>
-            </div>
         </div>
     )
 }

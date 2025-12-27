@@ -22,7 +22,7 @@ const ImagesContainer = ({ data }) => {
                     data.images?.map(im =>
 
                         <Link href={`/products/${data._id}`} className="w-full flex justify-center items-center  " key={im}>
-                            <img src={im} className="w-[80%]    rounded-lg max-h-[220] object-cover object-top" alt="" />
+                            <img src={im} className="max-w-[80%]    rounded-lg max-h-[220] object-cover object-top" alt="" />
                         </Link>
                     )
                 }
@@ -60,9 +60,9 @@ const ImagesContainer = ({ data }) => {
     )
 };
 
-const ProdCard = ({ forSearch = false, data = {}, className = "min-w-[250]" }) => {
+const ProdCard = ({ forSearch = false, data = {}, className = "min-w-[250] " }) => {
     return (
-        <div className={`${className} bg-background flex flex-col justify-between mb-4  border border-transparent hover:border-foreground/20 relative group overflow-hidden w-full  shadow-xs duration-200 rounded-xl`}>
+        <div className={`${className} bg-background  flex flex-col w-[250] justify-between mb-4  border border-transparent hover:border-foreground/20 relative group overflow-hidden   shadow-xs duration-200 rounded-xl`}>
             <ImagesContainer data={data} />
             <div className="p-1 px-2 mt-2">
                 <Link href={`/products/${data._id}`} className="font-semibold line-clamp-2 tracking-tight ">{data.name}</Link>

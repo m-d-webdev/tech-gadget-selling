@@ -47,7 +47,8 @@ const Footer = () => {
     return (
         <div className="w-full mb-5 mt-10 flex justify-center">
             <div className="w-full max-w-[1200] shadow-sm pt-10 rounded-md border border-foreground/10 bg-background p-4">
-                <div className="px-5  justify-between items-center flex gap-3">
+
+                <div className="px-5  w-full justify-between items-center flex flex-col md:flex-row gap-3">
                     <div className="">
 
                         <h1 className="text-lg font-medium tracking-tight">Subscribe</h1>
@@ -72,8 +73,11 @@ const Footer = () => {
                     </div>
 
                 </div>
+
+
                 <div className="flex  mt-6 start w-full h-[1] bg-foreground/20"></div>
-                <div className="flex  mt-8 px-6 justify-between items-start w-full">
+
+                <div className="flex  mt-8 px-6 justify-between flex-wrap md:flex-nowrap items-start w-full">
                     <div className="">
                         <Logo textClass={"text-2xl"} className={"text-4xl "} />
                         <p className="max-w-[250] mt-4 tracking-tight font-medium">
@@ -94,7 +98,7 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-start  w-[70%] justify-evenly gap-4">
+                    <div className="flex mt-5 md:mt-0 items-start  w-[70%] justify-evenly gap-4">
                         <div>
                             <h2 className="font-semibold mb-2">Menu</h2>
                             {
@@ -176,6 +180,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className="flex  mt-8 start w-full h-[1] bg-foreground/20"></div>
                 <div className="w-full mt-4 flex justify-between items-center">
                     <div className="flex tracking-tight gap-2 items-center">

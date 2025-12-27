@@ -1,11 +1,11 @@
 "use client"
 
 import LinesUnderSection from "@/components/global/LinesUnderSection"
-import { Button } from "@/components/ui/button"
+
 
 const TryAiSection = () => {
     return (
-        <div className="min-h-[90vh] max-w-[1000] relative w-full flex flex-col items-center justify-center gap-2">
+        <div className="min-h-[90vh] overflow-hidden px-4 max-w-[1000] relative w-full flex flex-col items-center justify-center gap-2">
             <LinesUnderSection
 
                 xCount={20}
@@ -23,7 +23,7 @@ const TryAiSection = () => {
                     <input type="text" placeholder="Need help? Write your question ..."
                         className="text-sm font-medium tracking-tight w-full outline-none"
                     />
-                    <button className="bg-foreground text-white font-semibold w-[200] justify-center p-2 px-4 rounded-md text-nowrap tracking-tight text-sm flex gap-2 items-center">
+                    <button className="bg-foreground text-background font-semibold w-[200] justify-center p-2 px-4 rounded-md text-nowrap tracking-tight text-sm flex gap-2 items-center">
 
                         <i className="bi text-base bi-leaf"></i>
                         Send Message

@@ -1,6 +1,6 @@
 export default function ProductCardLoading({ forSearch = false }) {
     return (
-        <div className="w-[230] border mb-4 border-foreground/10 max-w-xs bg-background rounded-xl  p-2 animate-pulse">
+        <div className="!w-[230] border mb-4 border-foreground/10 max-w-xs bg-background rounded-xl  p-2 animate-pulse">
             {/* Image skeleton */}
             <div className="w-full h-56 bg-accent rounded-lg mb-4"></div>
 

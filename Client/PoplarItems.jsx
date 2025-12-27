@@ -9,7 +9,7 @@ const Container1 = ({ prod }) => {
 
     const [Indx, setIndx] = useState(0);
     return (
-        <div className="h-[100%] max-h-[100%] p-2  overflow-hidden group w-4/12 bg-background  rounded-xl  shadow-sm relative ">
+        <div className="h-[100%] max-h-[100%] p-2  overflow-hidden group w-[80%] md:w-4/12 bg-background  rounded-xl  shadow-sm relative ">
             <h1 className="line-clamp-2 tracking-tight  ml-1 mt-1 ">{prod?.name}</h1>
             <div
                 style={{
@@ -20,7 +20,7 @@ const Container1 = ({ prod }) => {
                 {
                     prod?.images?.map(i =>
                         <Link href={`/products/${prod?._id}`} className=" h-full w-full p-2 px-3 flex flex-col items-center gap-3 justify-center" key={i}>
-                            <img src={i} alt="" className="max-w-full  max-h-[80%] object-cover " />
+                            <img src={i} alt="" className="md:max-w-full max-w-[350] max-h-[250]   md:max-h-[80%] object-cover " />
                         </Link>
                     )
                 }
@@ -51,10 +51,10 @@ const Container1 = ({ prod }) => {
 }
 const Container2 = ({ prod }) => {
     return (
-        <div className="h-full  w-4/12 flex flex-col items-center justify-center gap-3   ">
+        <div className="h-full w-[80%] md:w-4/12 flex flex-col items-center justify-center gap-3   ">
             <div className=" h-[70%]  overflow-hidden w-full p-5 flex items-center justify-between gap-3 flex-col  bg-background relative rounded-xl  shadow-sm ">
                 <h1 className="line-clamp-2 tracking-tight w-full ">{prod?.name} </h1>
-                <Link href={`/products/${prod?._id}`} className="h-[80%] flex justify-center items-center w-full"><img src={prod?.images[0]} className="h-full object-cover" alt="" /></Link>
+                <Link href={`/products/${prod?._id}`} className="h-[80%] flex justify-center items-center w-full"><img src={prod?.images[0]} className="md:max-h-full max-h-[350]   md:max-w-none max-w-[250] object-cover" alt="" /></Link>
             </div>
 
             <div className="h-[30%]  w-full  ">
@@ -77,9 +77,9 @@ const Container2 = ({ prod }) => {
 }
 const Container3 = ({ prod1, prod2 }) => {
     return (
-        <div className="h-[100%]   w-4/12 flex flex-col gap-4   ">
-            <div className="h-[40%] p-4  w-full flex items-center justify-center overflow-hidden bg-background rounded-xl shadow-sm px-4 ">
-                <Link href={`/products/${prod1?._id}`} className="w-full h-full flex items-center justify-center"> <img src={prod1?.images[0]} className="max-h-full max-w-full object-cover  " alt="" /></Link>
+        <div className="h-[100%]  w-[80%] md:w-4/12 flex flex-col gap-4   ">
+            <div className="md:h-[40%] p-4  w-full flex items-center justify-center overflow-hidden bg-background rounded-xl shadow-sm px-4 ">
+                <Link href={`/products/${prod1?._id}`} className="md:w-full max-h-[300] md:h-full max-w-[200] flex items-center justify-center"> <img src={prod1?.images[0]} className="max-h-full max-w-full object  " alt="" /></Link>
                 <h1 className=" font-medium tracking-tight">
                 </h1>
             </div>
@@ -88,13 +88,13 @@ const Container3 = ({ prod1, prod2 }) => {
                 <h1 className="text-center font-semibold ">
                     Prioritize your health and enjoy a deep, revitalizing massage with our Deep Tissue Massage Gun.
                 </h1>
-                <div className="w-full grid gap-1 mt-5 grid-cols-2">
-                    <div className="w-full p-2 flex flex-col items-center border border-foreground/15 justify-between rounded-md">
-                        <Link href={`/products/${prod2?._id}`}><img src={prod2?.images[0]} alt="" /></Link>
+                <div className="w-full  gap-1 mt-5 flex">
+                    <div className="w-full justify-center p-2 flex flex-col items-center border border-foreground/15 justify-between rounded-md">
+                        <Link href={`/products/${prod2?._id}`}><img src={prod2?.images[0]} className="max-h-[180]" alt="" /></Link>
                         {/* <h2 className="text-center line-clamp-2 text-xs">{prod2.name}</h2> */}
                     </div>
-                    <div className="w-full p-2 flex flex-col items-center border border-foreground/15 justify-between rounded-md">
-                        <Link href={`/products/${prod2?._id}`}><img src={prod2?.images[1]} alt="" /></Link>
+                    <div className="w-full justify-center p-2 flex flex-col items-center border border-foreground/15 justify-between rounded-md">
+                        <Link href={`/products/${prod2?._id}`}><img src={prod2?.images[1]} className="max-h-[180]" alt="" /></Link>
                     </div>
                 </div>
 
@@ -122,12 +122,12 @@ const PoplarItems = () => {
         getFeaturedProds()
     }, [])
     return (
-        <div className="w-full flex flex-col justify-center gap-4 md:px-10 px-4 max-w-[1300] min-h-[100vh]">
+        <div className="w-full  flex flex-col justify-center gap-4 md:px-10 px-4 max-w-[1300] min-h-[100vh]">
             <h1 className="text-xl  mb-3 font-semibold tracking-tight">Upgrade Your Life with Smart Tech</h1>
             {isLoading
                 ? <>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6 animate-pulse">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 animate-pulse">
 
                         {/* LEFT BIG CARD */}
                         <div className="bg-background rounded-xl p-4 space-y-4 shadow">
@@ -183,7 +183,7 @@ const PoplarItems = () => {
                     </div>
                 </>
                 :
-                <div className="w-full    gap-4 flex justify-between md:flex-nowrap items-center   md:h-[550] ">
+                <div className="w-full    gap-4 flex flex-col md:flex-row justify-between md:flex-nowrap items-center   md:h-[550] ">
 
 
                     <Container1 prod={listProds[0]} />

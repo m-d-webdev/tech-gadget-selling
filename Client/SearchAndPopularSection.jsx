@@ -4,6 +4,8 @@ import LinesUnderSection from "@/components/global/LinesUnderSection";
 import { Button } from "@/components/ui/button";
 import { BatteryCharging, BrushCleaning, CarFront, Drill, Gamepad2, Headset, HousePlug, Mic2, MoveRight } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const categories = [
     {
@@ -68,20 +70,26 @@ const SearchAndPopularSection = () => {
 
 
     ];
-
+    const [Search, setSearch] = useState("")
+    const Router = useRouter()
     return (
-        <div className="w-full md:px-10 px-4 max-w-[1400] flex flex-col items-center justify-center min-h-[100vh]">
-            <div className="flex max-w-[1100] w-full drop-shadow-xs  border border-foreground/10 p-1  rounded-lg pl-4 bg-background items-center gap-1">
+        <div className="w-full  md:px-10 px-4 max-w-[1400] flex flex-col items-center justify-center min-h-[100vh]">
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                if (Search.trimEnd().trimStart() == "") return;
+                Router.push(`/search/${Search}`)
+            }} className="flex max-w-[1100] w-full drop-shadow-xs  border border-foreground/10 p-1  rounded-lg pl-4 bg-background items-center gap-1">
                 <input
                     type="text"
                     name="search"
+                    onChange={e => setSearch(e.target.value)}
                     placeholder="Type to search..."
                     className="border-none outline-none tracking-tight w-full md:w-full" />
                 <Button className={'bg-foreground gap-y py-6 rounded-lg font-mono'} variant={""}>
                     Search for Gadgets
 
                 </Button>
-            </div>
+            </form>
             <div className="w-full max-w-[1100]  mt-10">
                 <div className="flex ml-1 items-center gap-4 opacity-70">
                     <i className="bi bi-graph-up-arrow"></i>

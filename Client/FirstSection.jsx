@@ -7,7 +7,7 @@ import Link from "next/link"
 
 const FirstSection = () => {
     return (
-        <div className="flex w-full max-w-[1300] md:px-10  md:min-h-[90vh]  flex-col md:flex-row items-center justify-between ">
+        <div className="flex   w-full max-w-[1300] md:px-10  md:min-h-[90vh]  flex-col md:flex-row items-center justify-between ">
             <div className="mb-20">
                 {/* <a href="" className="flex gap-4 text-blue-600 opacity-60 ">Learn about {CompanyName}
                     <i className="bi bi-camera-video"></i>
@@ -22,7 +22,7 @@ const FirstSection = () => {
                             style={{
                                 filter: `drop-shadow(-20px 40px 100px var(--color-chart-1))`
                             }}
-                            className={" px-8"}>
+                            className={"text-white px-8"}>
                             Start Shoping
                             <i className="bi bi-basket"></i>
                         </Button>

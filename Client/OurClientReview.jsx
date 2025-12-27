@@ -34,12 +34,12 @@ const reviews = [
 
 const OurClientReview = () => {
     return (
-        <div className="min-h-[100vh]  relative flex flex-col justify-center items-center">
+        <div className="min-h-[100vh]   relative flex flex-col justify-center items-center">
             <h1 className="text-2xl font-semibold tracking-tighter">
                 What our clients say about us
             </h1>
             <p className="opacity-60 mt-4 text-center max-w-[510]">Real reviews from customers who tried our service and shared their honest experience. Their feedback helps us improve and provide a better shopping experience every day.</p>
-            <div className="grid max-w-[1100] grid-col-1 md:grid-cols-3 mt-15 gap-3">
+            <div className="grid max-w-[1100]  grid-cols-1 sm:grid-cols-2  md:grid-cols-3 mt-15 gap-3">
                 {
                     reviews.map(i => <ReviewCard key={i.id} data={i} />)
                 }
