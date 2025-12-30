@@ -86,7 +86,8 @@ const SearchAndPopularSection = () => {
                     placeholder="Type to search..."
                     className="border-none outline-none tracking-tight w-full md:w-full" />
                 <Button className={'bg-foreground gap-y py-6 rounded-lg font-mono'} variant={""}>
-                    Search for Gadgets
+                    <span className="hidden md:block">Search for Gadgets</span>
+                    <i class="bi md:hidden bi-search"></i>
 
                 </Button>
             </form>
@@ -119,12 +120,12 @@ const SearchAndPopularSection = () => {
                     yPersent={5}
                 />
                 <h1 className="text-xl font-semibold tracking-tight">Explore Our Collection</h1>
-                <div className="grid xl:grid-cols-6 md:grid-cols-4 mt-6 gap-6 grid-cols-3">
+                <div className="grid xl:grid-cols-6 md:grid-cols-4 mt-6 md:gap-6 gap-1 grid-cols-3">
                     {
                         categories.map(c =>
-                            <a target="_blank" href={`/c/${c}`} className="w-full duration-300 p-2 bg-background shadow-sm rounded-xl hover:shadow-lg  flex flex-col items-center justify-center gap-2" key={c.name}>
+                            <a target="_blank" href={`/c/${c}`} className="w-full duration-300 p-2 bg-background shadow-sm md:rounded-xl rounded-sm hover:shadow-lg  flex flex-col items-center justify-center gap-2" key={c.name}>
                                 {c.icon}
-                                <p>{c.name}</p>
+                                <p className="text-center">{c.name}</p>
                             </a>
                         )
                     }

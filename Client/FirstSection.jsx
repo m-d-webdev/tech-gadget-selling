@@ -7,16 +7,16 @@ import Link from "next/link"
 
 const FirstSection = () => {
     return (
-        <div className="flex   w-full max-w-[1300] md:px-10  md:min-h-[90vh]  flex-col md:flex-row items-center justify-between ">
+        <div className="flex   w-full max-w-[1300] md:px-10 px-4 pt-10 md:pt-0  md:min-h-[90vh]  flex-col md:flex-row items-center justify-between ">
             <div className="mb-20">
                 {/* <a href="" className="flex gap-4 text-blue-600 opacity-60 ">Learn about {CompanyName}
                     <i className="bi bi-camera-video"></i>
                 </a> */}
-                <h1 className="text-4xl font-semibold tracking-tight mt-2 max-w-[550]">Quality Smart Devices, Designed for Daily Use — Priced for <br /> <span className="text-chart-1">Everyone </span></h1>
-                <p className="max-w-[500] mt-5 opacity-70">
+                <h1 className="md:text-4xl text-3xl font-semibold text-center md:text-left tracking-tight mt-2 max-w-[550]">Quality Smart Devices, Designed for Daily Use — Priced for <br /> <span className="text-chart-1">Everyone </span></h1>
+                <p className="max-w-[500] mt-5 opacity-70 text-center md:text-left">
                     We bring you reliable, modern tech designed to handle daily tasks effortlessly, offering great performance without the heavy cost.
                 </p>
-                <div className="mt-8 flex gap-4">
+                <div className="mt-8  md:w-fit w-full justify-center items-center  flex gap-4">
                     <Link href={"/products"}>
                         <Button
                             style={{

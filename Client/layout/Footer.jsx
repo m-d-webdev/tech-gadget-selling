@@ -62,7 +62,7 @@ const Footer = () => {
                             icon={<i className="bi    bi-envelope-at"></i>}
                             label="Email"
                             parentClassName="bg-primary-foreground"
-                            className={"!w-[300]  "}
+                            className={"!md:w-[300]  "}
                             placeholder="you@domain.com"
                         />
                         <button className="bg-foreground text-sm font-medium text-background p-2 px-4 rounded-md flex gap-2 items-center">
@@ -98,7 +98,7 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex mt-5 md:mt-0 items-start  w-[70%] justify-evenly gap-4">
+                    <div className="flex mt-5 md:mt-0 items-start   w-[70%] flex-wrap md:flex-nowrap md:justify-evenly gap-4">
                         <div>
                             <h2 className="font-semibold mb-2">Menu</h2>
                             {
@@ -160,19 +160,19 @@ const Footer = () => {
 
                             <a target="_blank" href="" className=" mb-4 opacity-70 hover:opacity-100 duration-200">
                                 <i className="bi bi-envelope"></i>
-                                <p className="tracking-tight text-nowrap text-sm">iderkaoui.mustapha.dev@gmail.com</p>
+                                <p className="tracking-tight md:text-nowrap text-sm">iderkaoui.mustapha.dev@gmail.com</p>
                             </a>
                             <a target="_blank" href="" className=" flex gap-2 mb-4 opacity-70 hover:opacity-100 duration-200">
                                 <i className="bi bi-whatsapp"></i>
-                                <p className="tracking-tight text-nowrap text-sm">+212 767 310 612</p>
+                                <p className="tracking-tight md:text-nowrap text-sm">+212 767 310 612</p>
                             </a>
                             <a target="_blank" href="" className=" flex gap-2 mb-4 opacity-70 hover:opacity-100 duration-200">
                                 <i className="bi bi-telephone"></i>
-                                <p className="tracking-tight text-nowrap text-sm">+212 767 310 612</p>
+                                <p className="tracking-tight md:text-nowrap text-sm">+212 767 310 612</p>
                             </a>
                             <a target="_blank" href="https://maps.app.goo.gl/sjuSGNMA29Sow9Y6A" className="  mb-3 opacity-70 hover:opacity-100 duration-200">
                                 <i className="bi bi-geo-alt-fill"></i>
-                                <p className="tracking-tight text-nowrap text-sm">Barid almaghrib ، 83 Bd Abderrahim Bouabid، Agadir</p>
+                                <p className="tracking-tight md:text-nowrap text-sm">Barid almaghrib ، 83 Bd Abderrahim Bouabid، Agadir</p>
                             </a>
 
 

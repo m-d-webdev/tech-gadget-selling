@@ -232,7 +232,7 @@ const ProfileDropDown = () => {
     return (
         <div className="relative">
             <div onClick={() => setMenuOpen(pv => !pv)} className="p-[1] border-1 rounded-full border-chart-1">
-                <img className="w-[35] min-w-[35] h-[35] rounded-full object-cover" src={user.avatar} alt="" />
+                <img className="md:w-[35] w-[25]  md:min-w-[35] min-w-[25]  md:h-[35] h-[25]  rounded-full object-cover" src={user.avatar} alt="" />
             </div>
             <AnimatePresence>
                 {
