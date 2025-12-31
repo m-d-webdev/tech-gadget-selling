@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import Empty from "../Lotties/Empty";
 import Loader1 from "@/components/global/Loader1";
+import { pa9 } from "@/components/global/Toast/MyToas";
 
 const reviews = [
     {
@@ -146,13 +147,15 @@ const ReviewsAboutProds = ({ productd_id }) => {
     const [isLoading, setLoading] = useState(true)
     const [canGoNext, setCanGoNext] = useState(false)
     const Get_OldSearchProds = async () => {
-        setLoading(true);
-        const res = await axiosInstance.get(`/product/${productd_id}/get-reviews`);
-        console.log({ res });
-
-        setReviews(res?.data?.reviews ?? []);
-        setCanGoNext(res?.data?.pagination?.hasNextPage ?? false);
-        setLoading(false);
+        try {
+            setLoading(true);
+            const res = await axiosInstance.get(`/product/${productd_id}/get-reviews`);
+            setReviews(res?.data?.reviews ?? []);
+            setCanGoNext(res?.data?.pagination?.hasNextPage ?? false);
+            setLoading(false);
+        } catch (error) {
+            pa9.error("Failed to load reviews")
+        }
 
     };
 

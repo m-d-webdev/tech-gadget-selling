@@ -7,8 +7,11 @@ import SearchInput from "@/components/global/SearchInput";
 import AiAssistantBtn from "@/components/global/AiAssistantBtn";
 import Link from "next/link";
 import { Search } from "lucide-react";
+import { useEffect, useState } from "react";
+import { pa9 } from "@/components/global/Toast/MyToas";
 
 const Header = () => {
+   
     return (
         <div className="w-full z-[10]  sticky top-0 px-2 flex justify-center">
             <div className="mt-1 pl-5 md:flex hidden   md:min-w-[1000]  p-1 px-3  rounded-full justify-between items-center max-w-[1200] border border-foreground/10 bg-background" >

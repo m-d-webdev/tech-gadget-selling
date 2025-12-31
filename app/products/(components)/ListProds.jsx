@@ -1,6 +1,7 @@
 "use client";
 
 import { Get_prods } from "@/api/Products";
+import Empty from "@/Client/Lotties/Empty";
 import ProductCardLoading from "@/Client/Products/ProductLoading";
 import ProdCard from "@/components/global/ProdCard";
 import { useFiltersContext } from "@/context/FiltersProdContext";
@@ -66,9 +67,6 @@ const ListProds = () => {
                 }
             </div>
             {
-                isError && <p className="text-destructive">Something went happen</p>
-            }
-            {
                 isLoading
                     ?
                     <>
@@ -81,7 +79,13 @@ const ListProds = () => {
                     :
                     <>
                         {
-                            PRODUCTS?.map(p => <ProdCard className="!w-[230]" key={p._id} data={p} />)
+                            PRODUCTS?.length > 0
+                                ?
+                                PRODUCTS?.map(p => <ProdCard className="!w-[230]" key={p._id} data={p} />)
+                                : <div className="w-full h-[400] flex flex-col items-center justify-center">
+                                    <Empty />
+                                    <p>Sorry, we couldn’t find this product</p>
+                                </div>
                         }
                     </>
             }

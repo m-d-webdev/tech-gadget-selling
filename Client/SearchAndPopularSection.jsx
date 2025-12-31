@@ -87,7 +87,7 @@ const SearchAndPopularSection = () => {
                     className="border-none outline-none tracking-tight w-full md:w-full" />
                 <Button className={'bg-foreground gap-y py-6 rounded-lg font-mono'} variant={""}>
                     <span className="hidden md:block">Search for Gadgets</span>
-                    <i class="bi md:hidden bi-search"></i>
+                    <i className="bi md:hidden bi-search"></i>
 
                 </Button>
             </form>

@@ -2,6 +2,7 @@
 
 import axiosInstance from '@/api/axios';
 import Loader1 from '@/components/global/Loader1';
+import { pa9 } from '@/components/global/Toast/MyToas';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useMainContext } from '@/context/MainContext';
@@ -27,13 +28,18 @@ export default function ProductReviewForm({ productd_id = '', onSubmit = null })
                 rating, comment: review, title
             }
         );
-        console.log({ res });
+
         if (res.data) {
+            pa9.success("Thank you! We’ve saved your review successfully.", "Your review has been submitted successfully")
             setTitle(''); setReview(''); setRating(1); clearDraft();
+        } else {
+            pa9.error("Something went wrong. Please try again")        
         }
         setLoading(false);
 
-    }
+    };
+
+    
     useEffect(() => {
         // load draft if exists
         try {
