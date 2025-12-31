@@ -78,7 +78,7 @@ const ProdCard = ({ forSearch = false, data = {}, className = "min-w-[250] " }) 
                                     {data.price} <span className="text-sm  ml-[2] opacity-60">DH</span>
                                 </p>
 
-                                <Link href={`/products/${data.id}`} >
+                                <Link href={`/products/${data._id}`} >
                                     <button className={"text-sm px-4  bg-primary-foreground p-2 border border-foreground/20 rounded-sm gap-2 flex items-center font-medium "}>
                                         Buy now
                                         <i className="bi bi-arrow-up-right-circle-fill"></i>

@@ -5,6 +5,8 @@ import { Minus, Plus, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import ProductLoadingSkeleton from "./LoadingProductDtais";
 import Empty from "../Lotties/Empty";
+import { ADD_ITEM_TO_CART, DELETE_ITEM_FROM_CART } from "@/api/Cart";
+import Loader1 from "@/components/global/Loader1";
 
 
 
@@ -58,20 +60,18 @@ const ImagesContainer = ({ setShowZoom, images = [], setZoomPosition, setZoomedi
             )
           }
         </div>
-        <div className="w-full absolute px-2 flex justify-between top-[45%] left-0 group-hover:opacity-100 opacity-10">
 
-          <button
-            onClick={() => setIndx(pv => pv > 0 ? pv - 1 : 0)}
-            className="p-1 opacity-70 hover:opacity-100 rounded-md bg-foreground text-background px-[7] border border-foreground/20">
-            <i className="bi text-xl bi-arrow-left-short"></i>
-          </button>
+        <button
+          onClick={() => setIndx(pv => pv > 0 ? pv - 1 : 0)}
+          className="p-1 absolute left-1 top-[48%] opacity-70 hover:opacity-100 rounded-md bg-foreground text-background px-[7] border border-foreground/20">
+          <i className="bi text-xl bi-arrow-left-short"></i>
+        </button>
 
-          <button
-            onClick={() => setIndx(pv => pv < images.length - 1 ? pv + 1 : images.length - 1)}
-            className="p-1 opacity-70 hover:opacity-100 rounded-md bg-foreground text-background px-[7] border border-foreground/20">
-            <i className="bi text-xl bi-arrow-right-short"></i>
-          </button>
-        </div>
+        <button
+          onClick={() => setIndx(pv => pv < images.length - 1 ? pv + 1 : images.length - 1)}
+          className="p-1 absolute right-1 top-[48%] opacity-70 hover:opacity-100 rounded-md bg-foreground text-background px-[7] border border-foreground/20">
+          <i className="bi text-xl bi-arrow-right-short"></i>
+        </button>
         <div className="w-full absolute gap-1 px-3 flex justify-center items-center bottom-2 left-0">
           {
             Array(images.length).fill().map((n, i) =>
@@ -115,9 +115,25 @@ const ProductDetialSection = ({ productd_id }) => {
   const [isNotFound, setNotFound] = useState(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
   const [countSelected, setcountSelected] = useState(1);
+  const [isAddingToCart, setAddingToCart] = useState(false);
   const [ZoomedimageUrl, setZoomedimageUrl] = useState();
-  const link = "https://www.instagram.com/reels/DO6juujDL7V/"
-  const whatAppmessage = `HHello, I’m interested in ordering this product?. Product ID: ${product?.id}. Could you provide more details?`
+  const [listOldIds, setlistOldIds] = useState([]);
+
+  const checkLocalStorage = () => {
+    if (typeof (localStorage) != "undefined") {
+      let oldIds = localStorage.getItem("cart_ids")
+      if (oldIds) { oldIds = JSON.parse(oldIds) } else { oldIds = [] };
+      setlistOldIds(oldIds)
+    };
+  };
+
+
+  let link;
+  if (typeof (window) != 'undefined') {
+    link = window.location.href;
+
+  }
+  const whatAppmessage = `Hello, I’m interested in ordering this product?. Product ID: ${product?.id}. Could you provide more details?`
 
 
   const GetProd = async () => {
@@ -127,10 +143,26 @@ const ProductDetialSection = ({ productd_id }) => {
     if (!res.failed) {
       setProduct(res.data);
       setZoomedimageUrl(res.data?.images[0])
+      checkLocalStorage()
     } else {
       setNotFound(true)
     }
   };
+
+  const handleAddToCart = async (isTrue = false) => {
+    setAddingToCart(true)
+    if (isTrue) {
+      await DELETE_ITEM_FROM_CART({ productId: productd_id })
+      setAddingToCart(false);
+      checkLocalStorage()
+      return
+
+    }
+    await ADD_ITEM_TO_CART({ productId: productd_id, quantity: countSelected, color: product?.colors[0] })
+    setAddingToCart(false)
+    checkLocalStorage()
+  }
+
   useEffect(() => {
     GetProd()
   }, [])
@@ -205,7 +237,7 @@ const ProductDetialSection = ({ productd_id }) => {
                       </div>
                     </div>
 
-                    <div className="flex mt-6 gap-2">
+                    <div className="flex flex-wrap md:flex-nowrap mt-6 gap-2">
                       <div className="flex items-center bg-accent border border-foreground/10 rounded-md gap-4">
 
                         <button
@@ -231,18 +263,32 @@ const ProductDetialSection = ({ productd_id }) => {
                           <Plus className="w-5 h-5" />
                         </button>
                       </div>
-                      <button className="flex ml-4 gap-2 p-2 px-7 bg-background rounded-sm  border border-foreground/15 font-medium">
-                        Add to cart
-                        <i className="bi bi-basket3"></i>
-                      </button>
-                      <button className="flex ml-4 gap-2 p-2 px-12  bg-chart-1 text-white rounded-sm  border border-foreground/10 font-semibold">
+                      {
+                        listOldIds.includes(productd_id)
+                          ? <button onClick={() => handleAddToCart(true)} className="flex ml-4 gap-2 p-2 px-7 bg-green-500/5 text-green-600 rounded-sm  border border-green-500/40 font-medium">
+                            In the cart
+                            {isAddingToCart
+                              ? <Loader1 className="before:border-2 before:border-green-600 w-[19] h-[19]" />
+                              : <i className="bi bi-basket3-fill"></i>
+                            }
+                          </button>
+                          : <button onClick={() => handleAddToCart()} className="flex ml-4 gap-2 p-2 px-7 bg-background rounded-sm  border border-foreground/15 font-medium">
+                            Add to cart
+                            {isAddingToCart
+                              ? <Loader1 className="before:border-2 before:border-foreground w-[19] h-[19]" />
+                              : <i className="bi bi-basket3"></i>
+                            }
+                          </button>
+                      }
+
+                      <button className=" hidden md:flex gap-2 p-2 px-12  bg-chart-1 text-white rounded-sm  border border-foreground/10 font-semibold">
                         Order now
                         <i className="bi bi-send-check-fill"></i>
                       </button>
                     </div>
 
                     {/* <a target="_blank" href={`hI%20want%20to%20order%20product%20ID:%${product?.id}`}> */}
-                    <div className="flex mt-2 items-center gap-3">
+                    <div className="flex  flex-wrap md:flex-nowrap mt-2 items-center gap-3">
 
 
                       <div className="flex bg-accent border border-foreground/10 rounded-md">
@@ -257,7 +303,21 @@ const ProductDetialSection = ({ productd_id }) => {
                         </button>
                       </div>
                       <a target="_blank" href={`https://wa.me/212767310612?text=${encodeURIComponent(whatAppmessage)}`}
-                        className="p-2 px-4 text-green-500 bg-background border-2 border-green-500 font-semibold flex gap-2 rounded-md"
+                        className="p-2 px-4 text-green-500 bg-background border-2 border-green-500 font-semibold hidden md:flex gap-2 rounded-md"
+                      >
+                        Order on WhatsApp
+                        <i className="bi bi-whatsapp"></i>
+                      </a>
+                    </div>
+
+                    {/* MD: ================================ */}
+                    <div className="w-full gap-2 md:hidden   grid grid-cols-2">
+                      <button className="flex w-full justify-center gap-2 p-2 px-12  bg-chart-1 text-white rounded-sm  border border-foreground/10 font-semibold">
+                        Order now
+                        <i className="bi bi-send-check-fill"></i>
+                      </button>
+                      <a target="_blank" href={`https://wa.me/212767310612?text=${encodeURIComponent(whatAppmessage)}`}
+                        className="p-2 px-4 justify-center  w-full text-green-500 bg-background border-2 border-green-500 font-semibold flex  gap-2 rounded-md"
                       >
                         Order on WhatsApp
                         <i className="bi bi-whatsapp"></i>

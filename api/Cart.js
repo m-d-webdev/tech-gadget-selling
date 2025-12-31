@@ -1,5 +1,6 @@
 import { pa9 } from "@/components/global/Toast/MyToas.jsx";
 import axiosInstance from "./axios.js";
+import { AddCartIdToLocalStorage, DeleteCartIdFromLocalStorage } from "@/lib/utils.js";
 
 export const ADD_ITEM_TO_CART = async ({
     productId,
@@ -18,7 +19,7 @@ export const ADD_ITEM_TO_CART = async ({
             }
         );
         pa9.success("Product added to cart successfully.")
-
+        AddCartIdToLocalStorage(productId);
         return res;
 
     } catch (err) {
@@ -37,7 +38,8 @@ export const DELETE_ITEM_FROM_CART = async ({
 
         const res = await axiosInstance.delete(`/cart/${productId}`
         );
-        pa9.success("Product deleted to cart successfully.")
+        pa9.success("Product deleted from cart successfully.")
+        DeleteCartIdFromLocalStorage(productId);
 
         return res;
 

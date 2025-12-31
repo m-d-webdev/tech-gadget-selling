@@ -55,7 +55,7 @@
   --main-bg-color3: #FAFAFA;
   --radius: 0.625rem;
   --card: oklch(1 0 0);
-  --filter-color: #ffffff2c;
+  --filter-color: #0000003d;
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
@@ -94,10 +94,10 @@
 .dark {
   --gray3: #2928288e;
   --main-bg-color3: #1A1A1A;
+  --filter-color: #ffffff2c;
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.21 0.006 285.885);
-  --filter-color: #0000003d;
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);
   --popover-foreground: oklch(0.985 0 0);

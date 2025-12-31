@@ -165,7 +165,7 @@ const ReviewsAboutProds = ({ productd_id }) => {
 
 
     return (
-        <div className="w-full relative max-w-[1200] p-4 mt-15 md:min-h-[100vh]">
+        <div className="w-full relative md:max-w-[1200] max-w-[500] p-4 mt-15 md:min-h-[100vh]">
             <LinesUnderSection
                 xCount={20}
                 xPersent={5}

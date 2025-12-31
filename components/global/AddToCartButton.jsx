@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react"
 import { AnimatePresence, color, motion } from "framer-motion"
 import { Check, Minus, MoveRight, Plus } from "lucide-react";
 import Loader1 from "./Loader1";
-import { AddCartIdToLocalStorage, DeleteCartIdFromLocalStorage } from "@/lib/utils";
 
 const Menu = ({ productId, colors, onClose, addId }) => {
 
@@ -29,7 +28,6 @@ const Menu = ({ productId, colors, onClose, addId }) => {
         }
 
         if (!res.failed) {
-            AddCartIdToLocalStorage(productId)
             addId()
             onClose()
         }
@@ -139,7 +137,6 @@ const AddToCartButton = ({ productId, colors }) => {
     const handleDeleteFromCart = async () => {
         setloading(true)
         await DELETE_ITEM_FROM_CART({ productId })
-        DeleteCartIdFromLocalStorage(productId)
         setlistOldIds(pv => pv.filter(i => i != productId))
         setloading(false)
     }
